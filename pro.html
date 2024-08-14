@@ -319,7 +319,7 @@
                     }
 
                     Swal.fire({
-                        title: '<div class="text-md">กำลังบันทึก, รอสักครู่...</div>',
+                        title: '<div class="text-md">กำลังบันทึก...</div>',
                         allowOutsideClick: false,
                         showConfirmButton: false,
                         html: '<div class="swal2-loading"></div>',
@@ -329,27 +329,27 @@
                     });
 
                     let response = await fetch(WEB_APP_Leave_URL, {
-                        method: "POST",
-                        body: JSON.stringify(obj)
-                    });
+        method: "POST",
+        body: JSON.stringify(obj)
+    });
 
-                    let data = await response.json();
+    let data = await response.json();
 
-                    if (data.result === 'success') {
-                        Swal.fire({
-                            title: 'สำเร็จ!',
-                            text: 'บันทึกข้อมูลของคุณเรียบร้อย!',
-                            icon: 'success',
-                            confirmButtonText: 'ปิด',
-                        }).then(async (result) => {
-                            if (result.isConfirmed) {
-                                document.querySelector('form').reset();
-                                await sendFlexMessage(obj);
-                            }
-                        });
-                    } else {
-                        throw new Error(data.error || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
-                    }
+    if (data.result === 'success') {
+        Swal.fire({
+            title: 'สำเร็จ!',
+            text: data.message,
+            icon: 'success',
+            confirmButtonText: 'ปิด',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                document.querySelector('form').reset();
+                await sendFlexMessage(obj);
+            }
+        });
+    } else {
+        throw new Error(data.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+    }
                 } catch (error) {
                     Swal.fire({
                         icon: 'error',
