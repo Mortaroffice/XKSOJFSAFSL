@@ -48,35 +48,29 @@
                         </div>
 
                         <div class="pt-4 border rounded">
-    <div class="flex justify-between">
-        <div>
-            <h1 class="font-light text-center text-sm">ลาพักร้อน</h1>
-            <input type="text"
-                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                id="columnGData" placeholder="0" name="columnGData" readonly>
-        </div>
-        <div>
-            <h1 class="font-light text-center text-sm">ลากิจ</h1>
-            <input type="text"
-                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                id="columnHData" placeholder="0" name="columnHData" readonly>
-        </div>
-        <div>
-            <h1 class="font-light text-center text-sm">ลาป่วย</h1>
-            <input type="text"
-                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                id="columnIData" placeholder="0" name="columnIData" readonly>
-        </div>
-        <div>
-            <h1 class="font-light text-center text-sm">OT (ชม.)</h1>
-            <input type="text"
-                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                id="columnJData" placeholder="0" name="columnJData" readonly>
-        </div>
-    </div>
-</div>
-<input type="hidden" id="userId" name="userId">
-<input type="hidden" id="columnAData" name="columnAData">
+                            <div class="flex justify-between">
+                                <div>
+                                    <h1 class="font-light text-center text-sm">ลาพักร้อน</h1>
+                                    <input type="text"
+                                        class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                                        id="columnGData" placeholder="0" name="columnGData" readonly>
+                                </div>
+                                <div>
+                                    <h1 class="font-light text-center text-sm">ลากิจ</h1>
+                                    <input type="text"
+                                        class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                                        id="columnHData" placeholder="0" name="columnHData" readonly>
+                                </div>
+                                <div>
+                                    <h1 class="font-light text-center text-sm">ลาป่วย</h1>
+                                    <input type="text"
+                                        class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                                        id="columnIData" placeholder="0" name="columnIData" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="userId" name="userId">
+                        <input type="hidden" id="columnAData" name="columnAData">
                     </div>
                 </div>
             </div>
@@ -202,7 +196,7 @@
             }
         }
 
-       function displayData(row) {
+        function displayData(row) {
     document.getElementById('columnAData').value = row[0] || '';
     document.getElementById('columnBData').value = row[1] || '';
     document.getElementById('columnCData').value = row[2] || '';
@@ -211,7 +205,10 @@
     document.getElementById('columnGData').value = row[6] || '';
     document.getElementById('columnHData').value = row[7] || '';
     document.getElementById('columnIData').value = row[8] || '';
-    document.getElementById('columnJData').value = row[9] || '0'; // แสดงข้อมูล OT
+    
+    // แสดงข้อมูล OT โดยปัดเศษเหลือ 2 ตำแหน่งทศนิยม
+    let otHours = parseFloat(row[9] || '0');
+    document.getElementById('columnJData').value = otHours.toFixed(2);
 }
 
         function showLoading(isLoading) {
@@ -387,20 +384,20 @@
         }
 
         async function sendFlexMessage(data) {
-            let contents = [
-                { type: "text", text: `ชื่อ: ${data.nameId}` },
-                { type: "text", text: `เรื่อง: ${data.typeId}` },
-                { type: "text", text: `วันเริ่มต้น: ${formatDate(data.startDateId)}` },
-                { type: "text", text: `วันสิ้นสุด: ${formatDate(data.endDateId)}` },
-            ];
+    let contents = [
+        { type: "text", text: `ชื่อ: ${data.nameId}` },
+        { type: "text", text: `เรื่อง: ${data.typeId}` },
+        { type: "text", text: `วันเริ่มต้น: ${formatDate(data.startDateId)}` },
+        { type: "text", text: `วันสิ้นสุด: ${formatDate(data.endDateId)}` },
+    ];
 
-            if (data.typeId === "ขอทำโอที") {
-                contents.push(
-                    { type: "text", text: `เวลาเริ่มต้น: ${data.startTimeId}` },
-                    { type: "text", text: `เวลาสิ้นสุด: ${data.endTimeId}` },
-                    { type: "text", text: `จำนวนชั่วโมงโอที: ${data.overtimeHours} ชั่วโมง` }
-                );
-            }
+    if (data.typeId === "ขอทำโอที") {
+        contents.push(
+            { type: "text", text: `เวลาเริ่มต้น: ${data.startTimeId}` },
+            { type: "text", text: `เวลาสิ้นสุด: ${data.endTimeId}` },
+            { type: "text", text: `จำนวนชั่วโมงโอที: ${parseFloat(data.overtimeHours).toFixed(2)} ชั่วโมง` }
+        );
+    }
 
             contents.push({ type: "text", color: '#2d63c7', text: `📋รอการอนุมัติ` });
 
