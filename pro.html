@@ -211,12 +211,8 @@ function displayData(row) {
     document.getElementById('columnGData').value = row[6] || '';
     document.getElementById('columnHData').value = row[7] || '';
     document.getElementById('columnIData').value = row[8] || '';
-    
-    // แสดงข้อมูล OT โดยปัดเศษเหลือ 2 ตำแหน่งทศนิยม
-    let otHours = parseFloat(row[9] || '0');
-    document.getElementById('columnJData').value = otHours.toFixed(2);
+    document.getElementById('columnJData').value = row[9] || '0'; // แสดงข้อมูล OT
 }
-
         function showLoading(isLoading) {
             const overlay = document.getElementById('loadingOverlay');
             const inputs = document.querySelectorAll('.input-field');
