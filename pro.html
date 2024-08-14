@@ -48,29 +48,35 @@
                         </div>
 
                         <div class="pt-4 border rounded">
-                            <div class="flex justify-between">
-                                <div>
-                                    <h1 class="font-light text-center text-sm">ลาพักร้อน</h1>
-                                    <input type="text"
-                                        class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                                        id="columnGData" placeholder="0" name="columnGData" readonly>
-                                </div>
-                                <div>
-                                    <h1 class="font-light text-center text-sm">ลากิจ</h1>
-                                    <input type="text"
-                                        class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                                        id="columnHData" placeholder="0" name="columnHData" readonly>
-                                </div>
-                                <div>
-                                    <h1 class="font-light text-center text-sm">ลาป่วย</h1>
-                                    <input type="text"
-                                        class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
-                                        id="columnIData" placeholder="0" name="columnIData" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="userId" name="userId">
-                        <input type="hidden" id="columnAData" name="columnAData">
+    <div class="flex justify-between">
+        <div>
+            <h1 class="font-light text-center text-sm">ลาพักร้อน</h1>
+            <input type="text"
+                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                id="columnGData" placeholder="0" name="columnGData" readonly>
+        </div>
+        <div>
+            <h1 class="font-light text-center text-sm">ลากิจ</h1>
+            <input type="text"
+                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                id="columnHData" placeholder="0" name="columnHData" readonly>
+        </div>
+        <div>
+            <h1 class="font-light text-center text-sm">ลาป่วย</h1>
+            <input type="text"
+                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                id="columnIData" placeholder="0" name="columnIData" readonly>
+        </div>
+        <div>
+            <h1 class="font-light text-center text-sm">OT (ชม.)</h1>
+            <input type="text"
+                class="input-field text-md bg-white text-black text-bold text-center bg-opacity-0 py-1 w-full"
+                id="columnJData" placeholder="0" name="columnJData" readonly>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="userId" name="userId">
+<input type="hidden" id="columnAData" name="columnAData">
                     </div>
                 </div>
             </div>
@@ -196,7 +202,7 @@
             }
         }
 
-        function displayData(row) {
+function displayData(row) {
     document.getElementById('columnAData').value = row[0] || '';
     document.getElementById('columnBData').value = row[1] || '';
     document.getElementById('columnCData').value = row[2] || '';
@@ -383,7 +389,7 @@
             return confirmation.isConfirmed;
         }
 
-        async function sendFlexMessage(data) {
+async function sendFlexMessage(data) {
     let contents = [
         { type: "text", text: `ชื่อ: ${data.nameId}` },
         { type: "text", text: `เรื่อง: ${data.typeId}` },
