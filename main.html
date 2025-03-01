@@ -26,7 +26,7 @@
 </head>
 <body class="bg-gradient-to-br from-gray-100 to-blue-100 h-screen ">
     <!-- กล่องใหญ่ที่เป็นกล่องสีขาวสำหรับเนื้อหาหลักของหน้า -->
-    <div class="max-w-md mx-auto bg-white p-8 m-2 rounded-md shadow-md">
+    <div class="max-w-md mx-auto bg-white p-8">
         <!-- ส่วนนี้แสดงข้อความต้อนรับและชื่อผู้ใช้ -->
         <div class="p-2"><span>👋🏻 สวัสดี </span>
             <input type="text" id="displayName" name="displayName">
@@ -124,7 +124,7 @@
             <textarea class="input-field w-full border border-gray-300 rounded-lg p-4 text-gray-700 " placeholder="Note"
                 id="noteInput"></textarea>
             <!-- ปุ่มสำหรับไปยังขั้นตอนถัดไป -->
-            <div class="bg-blue-800 text-white text-center rounded-md my-4">
+            <div class="bg-[#1e6bb2] text-white text-center rounded-md my-4">
                 <button class="p-4 w-full" onclick="nextStep()"> ถัดไป</button>
             </div>
         </div>
@@ -147,7 +147,7 @@
             </div>
             <div class="input-group my-4 py-4 flex justify-between">
                 <button class="w-full text-center p-4  m-2 rounded-md bg-gray-300" onclick="prevStep()">กลับ</button>
-                <button class="w-full text-center p-4 m-2 rounded-md bg-blue-800 text-white"
+                <button class="w-full text-center p-4 m-2 rounded-md bg-[#1e6bb2] text-white"
                     onclick="checkPictureAndNextStep()">ถัดไป</button>
             </div>
         </div>
@@ -155,7 +155,7 @@
         <!-- ขั้นตอนที่สาม: ยืนยันที่อยู่ -->
         <div id="step3" class="hidden text-center">
             <div class="submit">
-                <div class="w-full  p-4 mb-4 rounded-md bg-blue-800 text-white">
+                <div class="w-full  p-4 mb-4 rounded-md bg-[#1e6bb2] text-white">
                     <button type="button" onclick="getLocation()"
                         class="w-full rounded-md blink">กดเพื่อยืนยันที่อยู่ของคุณ</button>
                 </div>
@@ -179,7 +179,7 @@
                 style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             <div class="input-group my-4 py-4 flex justify-between">
                 <button class="w-1/4 text-center p-4  m-2 rounded-md bg-gray-300" onclick="prevStep()">กลับ</button>
-                <button id="submitButton" class="w-3/4 text-center p-4 m-2 rounded-md bg-blue-800 text-white"
+                <button id="submitButton" class="w-3/4 text-center p-4 m-2 rounded-md bg-[#1e6bb2] text-white"
                     onclick="submitForm()">บันทึกข้อมูล</button>
             </div>
         </div>
